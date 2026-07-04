@@ -90,7 +90,7 @@
       initLicense();
     });
     upgradeBtn.addEventListener('click', () => {
-      window.open('https://buy.stripe.com/6oU8wOdg65tQ104a8GbjW04', '_blank');
+      window.open('https://buy.stripe.com/00wbJ07df6c4dB12WW73G00', '_blank');
     });
 
     // Daily stats
