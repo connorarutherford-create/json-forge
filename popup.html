@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Forge</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <span class="logo">&#123;&#125;</span>
+        <span class="name">JSON Forge</span>
+        <span class="badge" id="proBadge">Free</span>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" title="Toggle theme">&#9790;</button>
+        <button class="icon-btn" id="settingsBtn" title="Settings">&#9881;</button>
+      </div>
+    </header>
+
+    <!-- Main workspace -->
+    <div class="workspace">
+      <!-- Input pane -->
+      <div class="pane input-pane">
+        <div class="pane-header">
+          <label class="pane-label">Input</label>
+          <div class="pane-actions">
+            <button class="btn btn-sm" id="clearBtn">Clear</button>
+            <button class="btn btn-sm" id="sampleBtn">Sample</button>
+          </div>
+        </div>
+        <textarea
+          id="inputArea"
+          class="input-area"
+          placeholder="Paste JSON here, or drag a .json file..."
+          spellcheck="false"
+        ></textarea>
+        <div class="drop-overlay" id="dropOverlay">
+          <div class="drop-text">Drop .json file here</div>
+        </div>
+      </div>
+
+      <!-- Divider (draggable) -->
+      <div class="divider" id="divider"></div>
+
+      <!-- Output pane -->
+      <div class="pane output-pane">
+        <div class="pane-header">
+          <div class="view-tabs">
+            <button class="view-tab active" data-view="formatted">Formatted</button>
+            <button class="view-tab" data-view="tree">Tree</button>
+            <button class="view-tab" data-view="raw">Raw</button>
+          </div>
+          <div class="pane-actions">
+            <button class="btn btn-sm" id="minifyToggle" title="Minify output">Minify</button>
+            <button class="btn btn-sm btn-primary" id="copyBtn">Copy</button>
+          </div>
+        </div>
+        <div class="output-area" id="outputArea">
+          <div class="placeholder">Paste JSON above to format</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status bar -->
+    <footer class="status-bar">
+      <div class="status-left">
+        <span class="status-indicator" id="statusIndicator"></span>
+        <span id="statusText">Ready</span>
+      </div>
+      <div class="status-right">
+        <span id="lineCount"></span>
+        <span id="charCount"></span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Settings panel (hidden) -->
+  <div class="overlay" id="settingsOverlay">
+    <div class="panel" id="settingsPanel">
+      <div class="panel-header">
+        <h2>Settings</h2>
+        <button class="icon-btn" id="closeSettings">&times;</button>
+      </div>
+      <div class="panel-body">
+        <div class="setting">
+          <label>Tab size</label>
+          <select id="tabSize">
+            <option value="2">2 spaces</option>
+            <option value="4" selected>4 spaces</option>
+            <option value="8">8 spaces</option>
+          </select>
+        </div>
+        <div class="setting">
+          <label>Theme</label>
+          <select id="themeSelect">
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+          </select>
+        </div>
+        <div class="setting">
+          <label>Line numbers</label>
+          <input type="checkbox" id="showLineNumbers" checked>
+        </div>
+        <hr>
+        <div class="setting pro-section">
+          <label class="pro-label">PRO FEATURES</label>
+        </div>
+        <div class="setting">
+          <label>History</label>
+          <span class="pro-tag">Pro</span>
+        </div>
+        <div class="setting">
+          <label>JSON Diff</label>
+          <span class="pro-tag">Pro</span>
+        </div>
+        <div class="setting">
+          <label>Export (CSV, YAML)</label>
+          <span class="pro-tag">Pro</span>
+        </div>
+        <div class="setting">
+          <label>JSONPath query</label>
+          <span class="pro-tag">Pro</span>
+        </div>
+        <button class="btn btn-primary btn-full" id="upgradeBtn">Upgrade to Pro — $4.99/yr</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
