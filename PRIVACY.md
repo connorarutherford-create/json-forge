@@ -23,4 +23,4 @@ If this policy changes, the extension version number will increment and you'll b
 
 ## Contact
 
-connor@esacurriculumpro.com
+builtbyaugust@gmail.com
