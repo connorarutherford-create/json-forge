@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <style>
+    html, body { margin: 0; padding: 0; background: #0f0f1a; }
+    * { box-sizing: border-box; }
+    ::selection { background: rgba(34,197,94,0.3); }
+  </style>
+</helmet>
+
+<div style="min-height: 100vh; background: #0f0f1a; color: #e2e2e8; font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; font-size: 16px; line-height: 1.6;">
+
+  <!-- ============ HEADER ============ -->
+  <header style="display: flex; align-items: center; justify-content: space-between; max-width: 1080px; margin: 0 auto; padding: 20px 32px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div style="width: 28px; height: 28px; border-radius: 6px; background: #22c55e; color: #0f0f1a; display: grid; place-items: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 14px;">{ }</div>
+      <span style="font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 18px;">JSON Forge</span>
+    </div>
+    <nav style="display: flex; align-items: center; gap: 24px;">
+      <a href="#format" style="color: #8a8f98; text-decoration: none; font-size: 14px;">Features</a>
+      <a href="#transparency" style="color: #8a8f98; text-decoration: none; font-size: 14px;">Transparency</a>
+      <a href="#install" style="background: #22c55e; color: #ffffff; text-decoration: none; padding: 8px 20px; border-radius: 6px; font-weight: 700; font-size: 14px;">Add to Chrome</a>
+    </nav>
+  </header>
+
+  <!-- ============ 1. HERO ============ -->
+  <section data-screen-label="Hero" style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 72px 32px 88px; gap: 0;">
+    <div style="display: inline-flex; align-items: center; gap: 8px; border: 1px solid #2a2a40; border-radius: 999px; padding: 5px 14px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #8a8f98;">
+      <span style="width: 7px; height: 7px; border-radius: 50%; background: #22c55e; display: inline-block;"></span>
+      Pending Chrome Web Store review
+    </div>
+    <h1 style="font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 56px; line-height: 1.1; letter-spacing: -0.02em; margin: 28px 0 0; max-width: 760px;">Beautify and Validate JSON. <span style="color: #22c55e;">Zero Permissions.</span></h1>
+    <p style="font-family: 'Courier Prime', monospace; font-style: italic; font-weight: 400; font-size: 20px; color: #8a8f98; margin: 20px 0 0; max-width: 560px;">A lightweight Chrome extension for developers who value privacy.</p>
+
+    <div style="display: flex; gap: 14px; margin-top: 36px;">
+      <a href="#install" style="background: #22c55e; color: #ffffff; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-weight: 700; font-size: 16px;">Add to Chrome — Free Trial</a>
+      <a href="#transparency" style="background: transparent; border: 1px solid #2a2a40; color: #e2e2e8; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-size: 16px;">See the permissions</a>
+    </div>
+    <p style="margin: 14px 0 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #6b6b83;">$9.99/yr after trial · No account required</p>
+
+    <!-- Product screenshot: actual extension popup -->
+    <div style="margin-top: 56px; width: 100%; max-width: 720px; border-radius: 12px; box-shadow: 0 24px 64px rgba(0,0,0,0.5); overflow: hidden;">
+      <img src="json-forge-screenshot-1280.png" alt="JSON Forge extension popup showing formatted JSON with syntax highlighting" style="width: 100%; height: auto; display: block;">
+    </div>
+  </section>
+
+  <!-- ============ 2. TRUST BLOCK ============ -->
+  <section data-screen-label="Trust" style="border-top: 1px solid #2a2a40; border-bottom: 1px solid #2a2a40; background: #1a1a2e; padding: 56px 32px;">
+    <div style="max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; text-align: center;">
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <span style="font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 44px; color: #22c55e; line-height: 1.1;">0</span>
+        <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #8a8f98;">Permissions requested</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <span style="font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 44px; color: #22c55e; line-height: 1.1;">0</span>
+        <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #8a8f98;">Network requests, ever</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <span style="font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 44px; color: #22c55e; line-height: 1.1;">41 KB</span>
+        <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #8a8f98;">Installed size, unpacked</span>
+      </div>
+    </div>
+    <p style="max-width: 640px; margin: 40px auto 0; text-align: center; color: #8a8f98; font-size: 15px;">Honest note: we're new. JSON Forge is pending Chrome Web Store review, so we can't show you install counts or star ratings yet. What we can show you is the <a href="#transparency" style="color: #22c55e; text-decoration: none;">permissions manifest</a> — and it's empty.</p>
+  </section>
+
+  <!-- ============ 3. FEATURE: FORMAT ============ -->
+  <section id="format" data-screen-label="Feature: Format" style="max-width: 1080px; margin: 0 auto; padding: 96px 32px;">
+    <p style="font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #22c55e; margin: 0 0 12px;">01 / Format</p>
+    <h2 style="font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 32px; line-height: 1.2; margin: 0 0 12px;">Minified mess in. Readable JSON out.</h2>
+    <p style="color: #8a8f98; max-width: 560px; margin: 0 0 40px;">Paste anything — API responses, log payloads, config dumps. One keystroke formats it with syntax highlighting. It's a JSON formatter; it formats JSON. That's the pitch.</p>
+    <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: stretch;">
+      <div style="background: #1a1a2e; border: 1px solid #2a2a40; border-radius: 10px; overflow: hidden;">
+        <div style="padding: 10px 16px; border-bottom: 1px solid #2a2a40; font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #6b6b83;">Before — what your API gives you</div>
+        <pre style="margin: 0; padding: 18px 20px; background: #252540; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.7; color: #8a8f98; white-space: pre-wrap; word-break: break-all; height: 100%;">{"order":{"id":"ord_9x2","items":[{"sku":"A-114","qty":2,"price":18.5},{"sku":"B-207","qty":1,"price":42}],"total":79,"paid":true}}</pre>
+      </div>
+      <div style="display: grid; place-items: center; font-family: 'JetBrains Mono', monospace; color: #22c55e; font-size: 20px;">→</div>
+      <div style="background: #1a1a2e; border: 1px solid #22c55e; border-radius: 10px; overflow: hidden;">
+        <div style="padding: 10px 16px; border-bottom: 1px solid #2a2a40; font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #22c55e;">After — one keystroke later</div>
+        <pre style="margin: 0; padding: 18px 20px; background: #252540; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.7; overflow-x: auto;">{
+  <span style="color: #7dd3a8;">"order"</span>: {
+    <span style="color: #7dd3a8;">"id"</span>: <span style="color: #9ecbf0;">"ord_9x2"</span>,
+    <span style="color: #7dd3a8;">"items"</span>: [
+      { <span style="color: #7dd3a8;">"sku"</span>: <span style="color: #9ecbf0;">"A-114"</span>, <span style="color: #7dd3a8;">"qty"</span>: <span style="color: #d9b45c;">2</span>, <span style="color: #7dd3a8;">"price"</span>: <span style="color: #d9b45c;">18.5</span> },
+      { <span style="color: #7dd3a8;">"sku"</span>: <span style="color: #9ecbf0;">"B-207"</span>, <span style="color: #7dd3a8;">"qty"</span>: <span style="color: #d9b45c;">1</span>, <span style="color: #7dd3a8;">"price"</span>: <span style="color: #d9b45c;">42</span> }
+    ],
+    <span style="color: #7dd3a8;">"total"</span>: <span style="color: #d9b45c;">79</span>,
+    <span style="color: #7dd3a8;">"paid"</span>: <span style="color: #22c55e;">true</span>
+  }
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. FEATURE: VALIDATE ============ -->
+  <section data-screen-label="Feature: Validate" style="border-top: 1px solid #2a2a40; background: #1a1a2e;">
+    <div style="max-width: 1080px; margin: 0 auto; padding: 96px 32px; display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center;">
+      <div>
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #22c55e; margin: 0 0 12px;">02 / Validate</p>
+        <h2 style="font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 32px; line-height: 1.2; margin: 0 0 12px;">Errors with line numbers, as you type.</h2>
+        <p style="color: #8a8f98; margin: 0;">Real-time validation against the JSON spec. No "invalid JSON" shrug — you get the line, the column, and what the parser expected instead. Trailing commas, unquoted keys, single quotes: caught before you paste it somewhere that matters.</p>
+      </div>
+      <div style="background: #0f0f1a; border: 1px solid #2a2a40; border-radius: 10px; overflow: hidden;">
+        <div style="padding: 10px 16px; border-bottom: 1px solid #2a2a40; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #6b6b83;">config.json</div>
+        <div style="background: #252540; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.9; padding: 16px 0;">
+          <div style="display: flex; gap: 18px; padding: 0 20px;"><span style="color: #6b6b83; width: 16px; text-align: right;">1</span><span>{</span></div>
+          <div style="display: flex; gap: 18px; padding: 0 20px;"><span style="color: #6b6b83; width: 16px; text-align: right;">2</span><span>  <span style="color: #7dd3a8;">"retries"</span>: <span style="color: #d9b45c;">3</span>,</span></div>
+          <div style="display: flex; gap: 18px; padding: 0 20px;"><span style="color: #6b6b83; width: 16px; text-align: right;">3</span><span>  <span style="color: #7dd3a8;">"timeout_ms"</span>: <span style="color: #d9b45c;">5000</span>,</span></div>
+          <div style="display: flex; gap: 18px; padding: 0 20px; background: rgba(239,68,68,0.12); border-left: 3px solid #ef4444; margin-left: -3px;"><span style="color: #ef4444; width: 16px; text-align: right;">4</span><span>  <span style="color: #7dd3a8;">"debug"</span>: <span style="color: #22c55e;">false</span><span style="color: #ef4444; font-weight: 700;">,</span></span></div>
+          <div style="display: flex; gap: 18px; padding: 0 20px;"><span style="color: #6b6b83; width: 16px; text-align: right;">5</span><span>}</span></div>
+        </div>
+        <div style="padding: 12px 16px; border-top: 1px solid #2a2a40; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #ef4444; display: flex; gap: 10px; align-items: baseline;">
+          <span style="font-weight: 700;">✗ line 4:18</span>
+          <span style="color: #8a8f98;">Trailing comma — expected <span style="color: #e2e2e8;">"</span> or <span style="color: #e2e2e8;">}</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. FEATURE: PRIVACY ============ -->
+  <section data-screen-label="Feature: Privacy" style="max-width: 1080px; margin: 0 auto; padding: 96px 32px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: center;">
+    <div>
+      <p style="font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #22c55e; margin: 0 0 12px;">03 / Privacy</p>
+      <h2 style="font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 32px; line-height: 1.2; margin: 0 0 12px;">Your data never leaves your browser. Period.</h2>
+      <p style="color: #8a8f98; margin: 0 0 16px;">The JSON you paste is often the JSON you shouldn't paste anywhere: API keys, customer records, internal payloads. JSON Forge parses everything locally in the popup. There is no server, no telemetry, no "anonymous usage analytics."</p>
+      <p style="color: #8a8f98; margin: 0;">Not a policy promise — a technical fact. With zero permissions and no network access, sending your data anywhere isn't something we chose not to do. It's something the extension <span style="color: #e2e2e8;">can't</span> do.</p>
+    </div>
+    <div style="background: #1a1a2e; border: 1px solid #2a2a40; border-radius: 10px; overflow: hidden;">
+      <div style="padding: 10px 16px; border-bottom: 1px solid #2a2a40; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #6b6b83;">manifest.json — the whole permissions section</div>
+      <pre style="margin: 0; padding: 20px 24px; background: #252540; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.8;">{
+  <span style="color: #7dd3a8;">"name"</span>: <span style="color: #9ecbf0;">"JSON Forge"</span>,
+  <span style="color: #7dd3a8;">"manifest_version"</span>: <span style="color: #d9b45c;">3</span>,
+  <span style="color: #7dd3a8;">"permissions"</span>: <span style="color: #22c55e;">[]</span>,
+  <span style="color: #7dd3a8;">"host_permissions"</span>: <span style="color: #22c55e;">[]</span>
+}</pre>
+      <div style="padding: 10px 16px; border-top: 1px solid #2a2a40; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #6b6b83;">Verify it yourself after install: chrome://extensions → Details</div>
+    </div>
+  </section>
+
+  <!-- ============ 6. TRANSPARENCY COMPARISON ============ -->
+  <section id="transparency" data-screen-label="Comparison" style="border-top: 1px solid #2a2a40; background: #1a1a2e;">
+    <div style="max-width: 880px; margin: 0 auto; padding: 96px 32px;">
+      <p style="font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #22c55e; margin: 0 0 12px; text-align: center;">The differentiator</p>
+      <h2 style="font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 32px; line-height: 1.2; margin: 0 0 12px; text-align: center;">Every other JSON formatter asks for host permissions.</h2>
+      <p style="color: #8a8f98; text-align: center; max-width: 560px; margin: 0 auto 48px;">"Read and change all your data on all websites" is the standard ask — usually so the extension can auto-format JSON responses in tabs. Useful. Also a lot of access for a formatter. We chose the popup-only tradeoff instead.</p>
+
+      <div style="border: 1px solid #2a2a40; border-radius: 12px; overflow: hidden;">
+        <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; background: #252540; border-bottom: 1px solid #2a2a40;">
+          <div style="padding: 14px 20px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #6b6b83;"></div>
+          <div style="padding: 14px 20px; font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 15px; color: #22c55e;">JSON Forge</div>
+          <div style="padding: 14px 20px; font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 15px; color: #8a8f98;">Typical formatter</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; border-bottom: 1px solid #2a2a40; background: #0f0f1a;">
+          <div style="padding: 14px 20px; font-size: 14px; color: #e2e2e8;">Permissions on install</div>
+          <div style="padding: 14px 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #22c55e;">None</div>
+          <div style="padding: 14px 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #ef4444;">Read data on all sites</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; border-bottom: 1px solid #2a2a40; background: #0f0f1a;">
+          <div style="padding: 14px 20px; font-size: 14px; color: #e2e2e8;">Can see your open tabs</div>
+          <div style="padding: 14px 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #22c55e;">No</div>
+          <div style="padding: 14px 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #ef4444;">Yes</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; border-bottom: 1px solid #2a2a40; background: #0f0f1a;">
+          <div style="padding: 14px 20px; font-size: 14px; color: #e2e2e8;">Network / analytics calls</div>
+          <div style="padding: 14px 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #22c55e;">Zero</div>
+          <div style="padding: 14px 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #8a8f98;">Varies — check yourself</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1.4fr 1fr 1fr; background: #0f0f1a;">
+          <div style="padding: 14px 20px; font-size: 14px; color: #e2e2e8;">Auto-format JSON in tabs</div>
+          <div style="padding: 14px 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #8a8f98;">No — popup only</div>
+          <div style="padding: 14px 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #22c55e;">Yes</div>
+        </div>
+      </div>
+      <p style="margin: 16px 4px 0; font-size: 13px; color: #6b6b83;">Fair is fair: that last row is a real tradeoff. If you want in-tab auto-formatting, JSON Forge isn't it — that feature is impossible without host permissions, and we won't ask for them.</p>
+    </div>
+  </section>
+
+  <!-- ============ 7. FINAL CTA ============ -->
+  <section id="install" data-screen-label="Final CTA" style="border-top: 1px solid #2a2a40; background: linear-gradient(180deg, #10241a 0%, #0f0f1a 100%); padding: 104px 32px; text-align: center;">
+    <h2 style="font-family: 'Courier Prime', monospace; font-weight: 700; font-size: 40px; line-height: 1.2; margin: 0; letter-spacing: -0.02em;">Format JSON without handing over your browser.</h2>
+    <p style="font-family: 'Courier Prime', monospace; font-style: italic; color: #8a8f98; font-size: 18px; margin: 16px 0 0;">14-day free trial. Then $9.99/yr. That's the whole pricing page.</p>
+    <div style="display: flex; justify-content: center; margin-top: 36px;">
+      <a href="#" style="background: #22c55e; color: #ffffff; text-decoration: none; padding: 14px 36px; border-radius: 6px; font-weight: 700; font-size: 18px;">Add to Chrome — Free Trial</a>
+    </div>
+    <sc-if value="{{ showPromo }}" hint-placeholder-val="{{ true }}">
+      <div style="display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; border: 1px dashed #2a2a40; border-radius: 8px; padding: 10px 18px;">
+        <span style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #8a8f98;">Launch promo</span>
+        <span style="font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 14px; color: #22c55e;">LAUNCH50</span>
+        <span style="font-size: 13px; color: #8a8f98;">— 50% off your first year</span>
+      </div>
+    </sc-if>
+    <p style="margin: 28px 0 0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: #6b6b83;">Cancel anytime · No account until you subscribe · Refunds, no questions asked</p>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="border-top: 1px solid #2a2a40; padding: 28px 32px;">
+    <div style="max-width: 1080px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #6b6b83;">
+      <span style="font-family: 'JetBrains Mono', monospace;">© 2026 JSON Forge</span>
+      <div style="display: flex; gap: 20px;">
+        <a href="https://github.com/connorarutherford-create/json-forge" style="color: #6b6b83; text-decoration: none;">Source</a>
+        <a href="https://raw.githubusercontent.com/connorarutherford-create/json-forge/main/PRIVACY.md" style="color: #6b6b83; text-decoration: none;">Privacy (short read)</a>
+        <a href="mailto:connor@esacurriculumpro.com" style="color: #6b6b83; text-decoration: none;">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;popupState&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;formatted&quot;, &quot;error&quot;], &quot;default&quot;: &quot;formatted&quot;, &quot;tsType&quot;: &quot;\&quot;formatted\&quot; | \&quot;error\&quot;&quot;, &quot;section&quot;: &quot;Hero&quot; },
+  &quot;showPromo&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Final CTA&quot; }
+}">
+class Component extends DCLogic {
+  renderVals() {
+    const state = this.props.popupState ?? "formatted";
+    return {
+      popupFormatted: state === "formatted",
+      popupError: state === "error",
+      showPromo: this.props.showPromo ?? true,
+    };
+  }
+}
+
+</script>
+</body>
+</html>
