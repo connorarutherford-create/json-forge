@@ -79,10 +79,24 @@
     const inTrial = trialDaysLeft > 0 && !isPro;
     const proEnabled = isPro || inTrial;
 
-    // Show Pro theme options
-    document.querySelectorAll('.theme-pro').forEach(el => {
-      el.style.display = proEnabled ? '' : 'none';
-    });
+    // Show Pro theme options (add/remove from DOM)
+    const PRO_THEME_OPTS = [
+      { value: 'monokai', label: 'Monokai' },
+      { value: 'nord', label: 'Nord' },
+      { value: 'solarized', label: 'Solarized' }
+    ];
+    const existingPro = themeSelect.querySelector('[data-pro-theme]');
+    if (proEnabled && !existingPro) {
+      PRO_THEME_OPTS.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t.value;
+        opt.textContent = t.label + '  [Pro]';
+        opt.dataset.proTheme = 'true';
+        themeSelect.appendChild(opt);
+      });
+    } else if (!proEnabled && existingPro) {
+      themeSelect.querySelectorAll('[data-pro-theme]').forEach(opt => opt.remove());
+    }
 
     if (isPro) {
       proBadge.textContent = 'Pro';

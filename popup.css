@@ -608,14 +608,3 @@ body {
 }
 .resize-handle:hover { color: var(--accent); }
 
-/* ── Pro Theme Options ── */
-.theme-pro {
-  display: none;
-  font-size: 0.7rem;
-  padding: 2px 3px;
-  background: var(--accent-dim);
-  color: var(--accent);
-  border-radius: 2px;
-  margin-left: 4px;
-}
-.pro-enabled .theme-pro { display: inline; }
