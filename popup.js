@@ -79,9 +79,9 @@
       upgradeBtn.textContent = 'Pro Active ✓';
       upgradeBtn.disabled = true;
     } else if (inTrial) {
-      upgradeBtn.textContent = `Upgrade to Pro — $4.99/yr (${trialDaysLeft}d trial left)`;
+      upgradeBtn.textContent = `Upgrade to Pro — $9.99/yr (${trialDaysLeft}d trial left)`;
     } else {
-      upgradeBtn.textContent = 'Upgrade to Pro — $4.99/yr';
+      upgradeBtn.textContent = 'Upgrade to Pro — $9.99/yr';
     }
 
     // Double-click to activate Pro (same pattern as Link Cleaner)
@@ -169,8 +169,121 @@
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
 
+  // ─── Format History (Pro) ──────────────────────────────────
+  const HISTORY_KEY = 'formatHistory';
+  const MAX_HISTORY = 50;
+
+  async function saveHistory(input, formatted) {
+    if (!isPro) return;
+    const result = await chrome.storage.local.get(HISTORY_KEY);
+    let entries = result[HISTORY_KEY] || [];
+    // Don't save duplicates of the same input
+    if (entries.length > 0 && entries[0].input === input) return;
+    entries.unshift({
+      id: 'h_' + Date.now(),
+      timestamp: Date.now(),
+      input,
+      formatted,
+      lines: input.split('\n').length,
+      chars: input.length
+    });
+    if (entries.length > MAX_HISTORY) entries = entries.slice(0, MAX_HISTORY);
+    await chrome.storage.local.set({ [HISTORY_KEY]: entries });
+  }
+
+  async function loadHistory() {
+    const result = await chrome.storage.local.get(HISTORY_KEY);
+    return result[HISTORY_KEY] || [];
+  }
+
+  function renderHistory(entries) {
+    if (!isPro) {
+      outputArea.innerHTML = `<div class="history-locked">
+        <div class="history-lock-icon">&#128274;</div>
+        <p>Format history is a Pro feature.</p>
+        <button class="btn btn-primary" id="historyUpgradeBtn">Upgrade to Pro — $9.99/yr</button>
+        <p class="history-trial-note">7-day free trial. No commitment.</p>
+      </div>`;
+      const btn = document.getElementById('historyUpgradeBtn');
+      if (btn) btn.addEventListener('click', () => window.open('https://buy.stripe.com/00wbJ07df6c4dB12WW73G00', '_blank'));
+      return;
+    }
+
+    if (entries.length === 0) {
+      outputArea.innerHTML = '<div class="placeholder">No format history yet. Format some JSON and it will appear here.</div>';
+      return;
+    }
+
+    let html = '<div class="history-list">';
+    // Only show first N entries for render, but store full count
+    const showEntries = entries.slice(0, 50);
+    let remaining = entries.length - showEntries.length;
+    
+    for (const entry of showEntries) {
+      const date = new Date(entry.timestamp);
+      const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const dateStr = date.toLocaleDateString([], { month: 'short', day: 'numeric' });
+      const preview = entry.input.length > 80 ? entry.input.substring(0, 80) + '…' : entry.input;
+      
+      html += `<div class="history-item" data-id="${entry.id}">
+        <div class="history-item-meta">
+          <span class="history-item-time">${dateStr} ${timeStr}</span>
+          <span class="history-item-stats">${entry.lines} lines · ${entry.chars} chars</span>
+        </div>
+        <pre class="history-item-preview">${escapeHtml(preview)}</pre>
+        <div class="history-item-actions">
+          <button class="btn btn-sm history-restore" data-id="${entry.id}">Restore</button>
+          <button class="btn btn-sm history-copy" data-id="${entry.id}">Copy</button>
+        </div>
+      </div>`;
+    }
+    if (remaining > 0) {
+      html += `<div class="history-more">+ ${remaining} older entries</div>`;
+    }
+    html += '</div>';
+    
+    outputArea.innerHTML = html;
+
+    // Wire up restore buttons
+    outputArea.querySelectorAll('.history-restore').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.dataset.id;
+        const entries = await loadHistory();
+        const entry = entries.find(e => e.id === id);
+        if (entry) {
+          inputArea.value = entry.input;
+          processInput();
+        }
+      });
+    });
+
+    // Wire up copy buttons
+    outputArea.querySelectorAll('.history-copy').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.dataset.id;
+        const entries = await loadHistory();
+        const entry = entries.find(e => e.id === id);
+        if (entry) {
+          try {
+            await navigator.clipboard.writeText(entry.formatted);
+            btn.textContent = 'Copied!';
+            setTimeout(() => { btn.textContent = 'Copy'; }, 1500);
+          } catch(e) {
+            btn.textContent = 'Failed';
+          }
+        }
+      });
+    });
+  }
+
   // ─── Render Output ─────────────────────────────────────────
   function renderOutput() {
+    // Handle history view separately (doesn't need currentJson)
+    if (currentView === 'history') {
+      loadHistory().then(entries => renderHistory(entries));
+      return;
+    }
+
     if (!currentJson) {
       outputArea.innerHTML = '<div class="placeholder">Paste JSON above to format</div>';
       return;
@@ -253,6 +366,10 @@
     // Track format
     dailyFormatCount++;
     chrome.storage.sync.set({ dailyFormats: dailyFormatCount, lastDate: today });
+
+    // Save to format history (Pro)
+    const formatted = isMinified ? JSON.stringify(currentJson) : JSON.stringify(currentJson, null, parseInt(tabSize.value) || 2);
+    saveHistory(raw, formatted);
 
     renderOutput();
   }
