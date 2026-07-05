@@ -784,7 +784,7 @@
     });
 
     // Settings panel
-    settingsBtn.addEventListener('click', () => { settingsOverlay.style.display = ''; });
+    settingsBtn.addEventListener('click', () => { settingsOverlay.style.display = 'flex'; });
     closeSettings.addEventListener('click', () => { settingsOverlay.style.display = 'none'; saveSettings(); });
     settingsOverlay.addEventListener('click', (e) => { if (e.target === settingsOverlay) { settingsOverlay.style.display = 'none'; saveSettings(); } });
     tabSize.addEventListener('change', () => { if (currentJson) renderOutput(); saveSettings(); });
@@ -810,8 +810,7 @@
 
     // Diff (Pro)
     diffBtn.addEventListener('click', () => {
-      diffOverlay.style.display = '';
-      // Pre-fill with current formatted JSON
+      diffOverlay.style.display = 'flex';
       if (currentJson) {
         if (!diffNew.value) {
           diffNew.value = JSON.stringify(currentJson, null, parseInt(tabSize.value) || 2);

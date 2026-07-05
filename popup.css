@@ -43,6 +43,10 @@ html { font-size: 14px; }
 body {
   width: 600px;
   height: 500px;
+  min-width: 400px;
+  min-height: 350px;
+  resize: both;
+  overflow: hidden;
   font-family: var(--font-sans);
   background: var(--bg);
   color: var(--text);
