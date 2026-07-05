@@ -79,6 +79,11 @@
     const inTrial = trialDaysLeft > 0 && !isPro;
     const proEnabled = isPro || inTrial;
 
+    // Show Pro theme options
+    document.querySelectorAll('.theme-pro').forEach(el => {
+      el.style.display = proEnabled ? '' : 'none';
+    });
+
     if (isPro) {
       proBadge.textContent = 'Pro';
       proBadge.className = 'badge pro';
@@ -641,6 +646,10 @@
 
     const formatted = isMinified ? JSON.stringify(currentJson) : JSON.stringify(currentJson, null, parseInt(tabSize.value) || 2);
     saveHistory(raw, formatted);
+
+    // Save current input for persistence across popup reopens
+    chrome.storage.local.set({ savedInput: raw });
+
     renderOutput();
   }
 
@@ -734,11 +743,33 @@
     if (isDragging) { isDragging = false; document.body.style.cursor = ''; }
   });
 
+  // ─── Popup Resize Handle ──────────────────────────────────
+  const resizeHandle = document.getElementById('resizeHandle');
+  let isResizing = false;
+  resizeHandle.addEventListener('mousedown', (e) => {
+    isResizing = true;
+    e.preventDefault();
+  });
+  document.addEventListener('mousemove', (e) => {
+    if (!isResizing) return;
+    document.body.style.width = Math.max(400, e.clientX) + 'px';
+    document.body.style.height = Math.max(350, e.clientY) + 'px';
+  });
+  document.addEventListener('mouseup', () => {
+    isResizing = false;
+  });
+
   // ─── Init ──────────────────────────────────────────────────
   async function init() {
     await initLicense();
     loadSettings();
-    if (!inputArea.value) loadSample();
+
+    // Restore saved input
+    const saved = await chrome.storage.local.get('savedInput');
+    if (saved.savedInput) {
+      inputArea.value = saved.savedInput;
+    }
+    processInput();
 
     // Input processing
     let debounceTimer;
@@ -763,6 +794,7 @@
     // Clear
     clearBtn.addEventListener('click', () => {
       inputArea.value = '';
+      chrome.storage.local.remove('savedInput');
       processInput();
     });
 
