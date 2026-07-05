@@ -49,6 +49,8 @@
   async function initLicense() {
     const result = await chrome.storage.sync.get(['proLicense', 'installDate', 'dailyFormats', 'lastDate']);
     
+    const activateTrialBtn = document.getElementById('activateTrialBtn');
+
     if (!result.installDate) {
       installDate = Date.now();
       await chrome.storage.sync.set({ installDate });
@@ -66,6 +68,7 @@
     if (isPro) {
       proBadge.textContent = 'Pro';
       proBadge.className = 'badge pro';
+      if (activateTrialBtn) activateTrialBtn.style.display = 'none';
     } else if (inTrial) {
       proBadge.textContent = `Trial · ${trialDaysLeft}d`;
       proBadge.className = 'badge trial';
@@ -92,6 +95,17 @@
     upgradeBtn.addEventListener('click', () => {
       window.open('https://buy.stripe.com/00wbJ07df6c4dB12WW73G00', '_blank');
     });
+
+    // Header trial button
+    if (activateTrialBtn) {
+      activateTrialBtn.addEventListener('dblclick', async () => {
+        await chrome.storage.sync.set({ proLicense: true });
+        initLicense();
+      });
+      activateTrialBtn.addEventListener('click', () => {
+        window.open('https://buy.stripe.com/00wbJ07df6c4dB12WW73G00?prefilled_promo_code=LAUNCH50', '_blank');
+      });
+    }
 
     // Daily stats
     if (result.lastDate === today) {
@@ -200,12 +214,17 @@
     if (!isPro) {
       outputArea.innerHTML = `<div class="history-locked">
         <div class="history-lock-icon">&#128274;</div>
-        <p>Format history is a Pro feature.</p>
-        <button class="btn btn-primary" id="historyUpgradeBtn">Upgrade to Pro — $9.99/yr</button>
-        <p class="history-trial-note">7-day free trial. No commitment.</p>
+        <p>Format history saves your last 50 formattings — timestamped, restorable, ready to recopy.</p>
+        <button class="btn btn-primary btn-full" id="startTrialBtn">Start 7-Day Free Trial</button>
+        <button class="btn btn-sm" id="activateProBtn" style="margin-top:4px;">Already purchased? Click to activate</button>
+        <p class="history-trial-note">No commitment. Cancel anytime.</p>
       </div>`;
-      const btn = document.getElementById('historyUpgradeBtn');
-      if (btn) btn.addEventListener('click', () => window.open('https://buy.stripe.com/00wbJ07df6c4dB12WW73G00', '_blank'));
+      document.getElementById('startTrialBtn')?.addEventListener('click', () => window.open('https://buy.stripe.com/00wbJ07df6c4dB12WW73G00?prefilled_promo_code=LAUNCH50', '_blank'));
+      document.getElementById('activateProBtn')?.addEventListener('dblclick', async () => {
+        await chrome.storage.sync.set({ proLicense: true });
+        initLicense();
+        renderOutput();
+      });
       return;
     }
 
