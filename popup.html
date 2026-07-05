@@ -17,6 +17,8 @@
       </div>
       <div class="header-actions">
         <button class="btn btn-sm" id="activateTrialBtn" style="border-color:#22c55e;">Start Trial</button>
+        <button class="icon-btn" id="diffBtn" title="JSON Diff (Pro)">&#8644;</button>
+        <button class="icon-btn" id="exportBtn" title="Export (Pro)">&#8600;</button>
         <button class="icon-btn" id="themeToggle" title="Toggle theme">&#9790;</button>
         <button class="icon-btn" id="settingsBtn" title="Settings">&#9881;</button>
       </div>
@@ -61,8 +63,24 @@
             <button class="btn btn-sm btn-primary" id="copyBtn">Copy</button>
           </div>
         </div>
+
+        <!-- JSONPath query bar (hidden, shown for Pro) -->
+        <div class="query-bar" id="queryBar" style="display:none;">
+          <span class="query-prefix">$.</span>
+          <input type="text" id="queryInput" class="query-input" placeholder="key or path (e.g. store.books[0].title)" spellcheck="false">
+          <span class="query-count" id="queryCount"></span>
+        </div>
+
         <div class="output-area" id="outputArea">
           <div class="placeholder">Paste JSON above to format</div>
+        </div>
+
+        <!-- Export dropdown (hidden) -->
+        <div class="export-dropdown" id="exportDropdown" style="display:none;">
+          <button class="export-option" data-format="json">As JSON</button>
+          <button class="export-option" data-format="csv">As CSV</button>
+          <button class="export-option" data-format="yaml">As YAML</button>
+          <button class="export-option" data-format="minified">As minified JSON</button>
         </div>
       </div>
     </div>
@@ -128,6 +146,36 @@
           <span class="pro-tag">Pro</span>
         </div>
         <button class="btn btn-primary btn-full" id="upgradeBtn">Upgrade to Pro — $9.99/yr</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Diff overlay (hidden) -->
+  <div class="overlay" id="diffOverlay" style="display:none;">
+    <div class="panel diff-panel">
+      <div class="panel-header">
+        <h2>JSON Diff</h2>
+        <button class="icon-btn" id="closeDiff">&times;</button>
+      </div>
+      <div class="diff-body">
+        <div class="diff-inputs">
+          <div class="diff-pane">
+            <label class="diff-label">Old JSON</label>
+            <textarea id="diffOld" class="diff-textarea" placeholder='{"old":"value"}' spellcheck="false"></textarea>
+          </div>
+          <div class="diff-pane">
+            <label class="diff-label">New JSON</label>
+            <textarea id="diffNew" class="diff-textarea" placeholder='{"new":"value"}' spellcheck="false"></textarea>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-full" id="diffCompareBtn">Compare</button>
+        <div class="diff-results" id="diffResults">
+          <div class="placeholder">Paste old and new JSON, then click Compare.</div>
+        </div>
+        <div class="diff-actions" id="diffActions" style="display:none;">
+          <button class="btn btn-sm" id="diffCopyResults">Copy diff</button>
+          <button class="btn btn-sm" id="diffClear">Clear</button>
+        </div>
       </div>
     </div>
   </div>

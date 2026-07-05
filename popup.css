@@ -112,7 +112,7 @@ body {
 }
 
 .input-pane { flex: 0 0 45%; }
-.output-pane { flex: 1; }
+.output-pane { flex: 1; position: relative; }
 
 .pane-header {
   display: flex;
@@ -436,3 +436,153 @@ body {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ── Export Dropdown ── */
+.export-dropdown {
+  position: absolute;
+  right: 42px;
+  top: 28px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  z-index: 20;
+  min-width: 130px;
+}
+.export-option {
+  display: block;
+  width: 100%;
+  padding: 6px 14px;
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--text);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.1s;
+}
+.export-option:hover { background: var(--bg-3); }
+.export-option:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+.export-option:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+
+/* ── JSONPath Query Bar ── */
+.query-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.query-prefix {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+.query-input {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 3px 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  outline: none;
+}
+.query-input:focus { border-color: var(--accent); }
+.query-input::placeholder { color: var(--text-dim); }
+.query-count {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ── Diff Overlay ── */
+.diff-panel {
+  max-width: 500px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+.diff-body {
+  padding: 14px;
+  overflow-y: auto;
+  flex: 1;
+}
+.diff-inputs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.diff-pane { flex: 1; }
+.diff-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 4px;
+}
+.diff-textarea {
+  width: 100%;
+  height: 100px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  outline: none;
+  resize: vertical;
+}
+.diff-textarea:focus { border-color: var(--accent); }
+.diff-textarea::placeholder { color: var(--text-dim); }
+
+.diff-results {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  line-height: 1.6;
+  margin-top: 10px;
+  padding: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  max-height: 300px;
+  overflow-y: auto;
+  min-height: 40px;
+}
+.diff-summary {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.diff-line {
+  display: flex;
+  gap: 6px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  align-items: baseline;
+}
+.diff-icon { font-weight: 700; width: 14px; text-align: center; flex-shrink: 0; }
+.diff-path { color: var(--text-muted); flex-shrink: 0; }
+.diff-value { flex: 1; }
+.diff-added { background: rgba(34,197,94,0.1); }
+.diff-added .diff-icon { color: var(--accent); }
+.diff-removed { background: rgba(239,68,68,0.1); }
+.diff-removed .diff-icon { color: var(--error); }
+.diff-changed { background: rgba(245,158,11,0.1); }
+.diff-changed .diff-icon { color: var(--warning); }
+.diff-old { color: var(--error); text-decoration: line-through; }
+.diff-new { color: var(--accent); }
+.diff-val { color: var(--text); }
+.diff-no-changes { color: var(--accent); text-align: center; padding: 20px; }
+.diff-error { color: var(--error); padding: 10px; }
+.diff-truncated { color: var(--text-dim); text-align: center; padding: 4px; }
+.diff-actions { display: flex; gap: 6px; margin-top: 8px; }
