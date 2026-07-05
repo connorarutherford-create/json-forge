@@ -610,6 +610,9 @@
   function processInput() {
     const raw = inputArea.value;
     currentRawInput = raw;
+
+    // Save raw input regardless of validity (persist across popup reopens)
+    chrome.storage.local.set({ savedInput: raw });
     if (!raw.trim()) {
       currentJson = null;
       statusIndicator.className = 'status-indicator';
@@ -646,9 +649,6 @@
 
     const formatted = isMinified ? JSON.stringify(currentJson) : JSON.stringify(currentJson, null, parseInt(tabSize.value) || 2);
     saveHistory(raw, formatted);
-
-    // Save current input for persistence across popup reopens
-    chrome.storage.local.set({ savedInput: raw });
 
     renderOutput();
   }
